@@ -50,6 +50,18 @@ public class Homework3 {
         int[] task7Sample = {2, 2, 2, 1, 2, 2, 10, 1};
         System.out.println("Task 7 : " + task7( task7Sample));
 
+
+        System.out.println("Task 8 sample:  ");
+        int [] task8Sample = {3,5,6,1};
+        int offset = -2;
+        for (int x: task8Sample)
+            System.out.print(x + " ");
+        arrayOffset(task8Sample, offset);
+        System.out.println(", offset : " + offset);
+        for (int x: task8Sample)
+            System.out.print(x + " ");
+
+
     }
     static int [] task5(int len , int initialValue)
     {
@@ -85,6 +97,31 @@ public class Homework3 {
             if (prefixSum[i] == prefixSum[n-1] - prefixSum[i]) //  Сумма на префиксе равна сумме на суффиксе :)
                 return true;  //Спасите меня...  Хотел повыпендриваться, решить эту задачу Декартовым деревом
         return false;
+    }
+    static void  arrayOffset(int [] array , int offset)
+    {
+        if (offset<0)
+        {
+            arrayOffset(array,array.length+offset);
+            return;
+        }
+        for (int i = 0;i<offset;++i) // O(n^2) - плохо, но пока не придумал как без доп памяти решить за O(n) - кажется , что это нереально.
+            arrayOffset(array);
+
+    }
+    static void  arrayOffset(int [] array )
+    {
+        int arraySize = array.length;
+        for (int i = 1;i<arraySize;++i)
+        {
+            int indexToSwap = (i+1)%arraySize;
+            // Эх, вот бы swap()
+            int temp = array[indexToSwap];
+            array[indexToSwap] = array[i];
+            array[i] = temp;
+        }
+
+
     }
 
 
