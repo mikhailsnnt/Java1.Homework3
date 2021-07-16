@@ -45,6 +45,49 @@ public class Homework3 {
             System.out.println();
         }
 
+        // Задания 5  очевидно, не стал писать семпл.
+        // Для задания 6 просто написал функции  min, max для массива
+        int[] task7Sample = {2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println("Task 7 : " + task7( task7Sample));
 
     }
+    static int [] task5(int len , int initialValue)
+    {
+        int [] temp = new int[len];
+        for (int i = 0;i<len;++i)
+            temp[i] = initialValue;
+        return temp;
+    }
+
+    static int arrayMin (int[] array){ //Минимум в массиве
+        int minimum = 1000000000; //
+        for(int i= 0;i<array.length;++i)
+            minimum = Integer.min(array[i] , minimum);
+        return minimum;
+    }
+    static int arrayMax (int[] array){ //Максимум в массиве
+        int maximum = -1000000000; //
+        for(int i= 0;i<array.length;++i)
+            maximum = Integer.max(array[i] , maximum);
+        return maximum;
+    }
+
+    static boolean task7 (int[] array)
+    {
+        int n  = array.length;
+        if (n == 0) //Проверка на пустоту массива
+            return false;
+        int[] prefixSum = new int[n] ;// Решаю задачу за O(n), префикс суммой  суммой , можно про
+        prefixSum[0] = array[0];
+        for(int i = 1;i<n;++i)
+            prefixSum[i] = prefixSum[i-1] + array[i];
+        for (int  i = 0;i+1<n;++i)
+            if (prefixSum[i] == prefixSum[n-1] - prefixSum[i]) //  Сумма на префиксе равна сумме на суффиксе :)
+                return true;  //Спасите меня...  Хотел повыпендриваться, решить эту задачу Декартовым деревом
+        return false;
+    }
+
+
+
+
 }
